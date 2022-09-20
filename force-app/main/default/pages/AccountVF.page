@@ -1,0 +1,9 @@
+<apex:page standardController="Opportunity" recordSetVar="opportunities" lightningStylesheets="true">
+    <apex:pageBlock title="liste des opportunités">
+        <apex:pageBlockTable value="{!opportunities}" var="opp">
+            <apex:column value="{!opp.Name}"/>
+            <apex:column value="{!opp.Amount}"/>
+            <apex:column value="{!opp.StageName}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

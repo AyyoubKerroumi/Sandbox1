@@ -1,0 +1,42 @@
+<aura:component controller="CampingListController">
+    <aura:handler name="init" action="{!c.doInit}" value="this"/>
+   <aura:attribute name="items" type="Camping_Item__c[]"/>
+   <aura:attribute name="newItem" type="Camping_Item__c" default="{
+    'sObjectType':'Camping_Item__c',
+    'Name':'',
+    'Quantity__c':0,
+    'Price__c':0,
+    'Packed__c':false
+   }"/>
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small" size="6">
+            <div aria-labelledby="newcampingform">
+                <fieldset class="slds-box slds-theme_default slds-container_small">
+                    <legend id="newcampingform" class="slds-text-heading_small slds-p-vertical_medium">
+                        Add Camping
+                    </legend>
+                    <form class="slds-form_stacked">
+                        <lightning:input aura:id="newCamping" label="Name" value="{!v.newItem.Name}" required="true"/>
+                        <lightning:input aura:id="newCamping" value="{!v.newItem.Quantity__c}" label="Quantity" type="number" min="1" required="true"/>
+                        <lightning:input aura:id="newCamping" value="{!v.newItem.Price__c}" type="number" label="Price" formatter="currency"/>
+                        <lightning:input aura:id="newCamping" type="checkbox" checked="{!v.newItem.Packed__c}" label="Packed?" />
+                        <lightning:button variant="brand" label="Create Camping Item" onclick="{!c.clickCreateItem}"/>
+                    </form>
+                </fieldset>
+            </div>
+        </lightning:layoutItem>
+        <lightning:layoutItem>
+            <lightning:card class="slds-box slds-theme_default slds-container_small" title="Campings">
+                <lightning:layout horizontalAlign="spread" multipleRows="true">
+                            <aura:iteration items="{!v.items}" var="item">
+                                <lightning:layoutItem size="6">
+                                        <div flexibility="auto" padding="around-small" size="6">
+                                            <div class="custom-box"><c:campingListItem item="{!item}"/></div>
+                                        </div>
+                                </lightning:layoutItem>
+                            </aura:iteration>
+            </lightning:layout>
+            </lightning:card>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>
