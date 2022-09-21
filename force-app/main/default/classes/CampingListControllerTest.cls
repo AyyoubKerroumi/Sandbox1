@@ -7,6 +7,7 @@ public class CampingListControllerTest {
         camping.Packed__c = true;
         camping.Price__c = 147.12;
         camping.Quantity__c = 10;
+        insert camping;
     }
     @isTest
     public static void getItems(){
